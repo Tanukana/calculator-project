@@ -1,15 +1,16 @@
-let mainDiv = document.querySelector('#calc-container');
-let output = document.querySelector('#results');
+const mainDiv = document.querySelector('#calc-container');
+const output = document.querySelector('#results');
+const test = document.querySelectorAll('.calc-num');
 
-let add = (a, b) => output.textContent = a + b;
+const add = (a, b) => output.textContent = a + b;
 
-let subtract = (a, b) => output.textContent = a - b;
+const subtract = (a, b) => output.textContent = a - b;
 
-let multiply = (a, b) => output.textContent = a * b;
+const multiply = (a, b) => output.textContent = a * b;
 
-let divide = (a, b) => output.textContent = a / b;
+const  divide = (a, b) => output.textContent = a / b;
 
-let operator = (a, b) => {
+const operator = (a, b) => {
     op = prompt('add | subtract | multi | divide :  ')
     opLow = op.toLowerCase();
     if(opLow == 'add') {
@@ -24,3 +25,10 @@ let operator = (a, b) => {
         return alert(`Make sure you spell your input correctly!`)
     }
 };
+
+// Testing of adding eventlisteners for multiple elements
+test.forEach(function(div) {
+    div.addEventListener('click', function() {
+        console.log(this.textContent);
+    });
+});

@@ -1,0 +1,11 @@
+#num-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.calc-num {
+    border: 2px solid pink;
+    padding: 10px;
+    margin: 10px;
+}
