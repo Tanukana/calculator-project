@@ -1,6 +1,8 @@
 const mainDiv = document.querySelector('#calc-container');
 const output = document.querySelector('#results');
-const test = document.querySelectorAll('.calc-num');
+const calcBtns = document.querySelectorAll('.calc');
+const display = document.querySelector('.test');
+const clear = document.querySelector('.clear');
 
 const add = (a, b) => output.textContent = a + b;
 
@@ -26,9 +28,19 @@ const operator = (a, b) => {
     }
 };
 
-// Testing of adding eventlisteners for multiple elements
-test.forEach(function(div) {
+// Event listener for buttons to return a value upon click while sending it to a function which displays it
+calcBtns.forEach(function(div) {
     div.addEventListener('click', function() {
-        console.log(this.textContent);
+        displayValue(this.textContent);
     });
 });
+
+// Clear Button functionality
+clear.addEventListener('click', () => {
+        display.innerHTML = '';
+});
+
+// Displaying input from buttons
+let displayValue = (value) => {
+        display.innerHTML += value;
+};
