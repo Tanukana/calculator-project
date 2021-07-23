@@ -37,10 +37,14 @@ calcBtns.forEach(function(div) {
 
 // Clear Button functionality
 clear.addEventListener('click', () => {
-        display.innerHTML = '';
+        display.innerHTML = '0';
 });
 
 // Displaying input from buttons
 let displayValue = (value) => {
+    if(display.innerHTML == "0") {
+        display.innerHTML = value;
+    } else {
         display.innerHTML += value;
+    }
 };
