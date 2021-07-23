@@ -1,7 +1,7 @@
 const mainDiv = document.querySelector('#calc-container');
 const output = document.querySelector('#results');
-const calcBtns = document.querySelectorAll('.calc');
-const display = document.querySelector('.test');
+const calcBtns = document.querySelectorAll('.calcBtn');
+const display = document.querySelector('.display-value');
 const clear = document.querySelector('.clear');
 
 const add = (a, b) => output.textContent = a + b;
@@ -48,3 +48,7 @@ let displayValue = (value) => {
         display.innerHTML += value;
     }
 };
+
+
+let x = 0;
+let testing = () => x = display.innerHTML;

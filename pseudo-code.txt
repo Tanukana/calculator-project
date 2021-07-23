@@ -1,0 +1,9 @@
+Every time you enter an operator it will store the current display {Number} and the input {operator}
+Now the following ( second ) {Number} being input should replace the current display of {Number}.
+
+All the while these are being recorded and each PAIR of numbers will be evaluated and then {results}
+will be stored to be compared to any subsequent {Number} , but only IF another {operator} is being input.
+
+Otherwise.... if the user decides to {Equals} we will just display {results} between the evaluation of the previous PAIR.
+
+They are still allowed to use an {operator} and this will just draw out the stored value of the evaluation {results} and tackle it against the new {Number} ahead.
