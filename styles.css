@@ -15,7 +15,7 @@
     grid-column: 2 / 3;
 }
 
-.calcBtn {
+.calcBtn, .op, .clear, .equals {
     border: 2px solid pink;
     padding: 10px;
     margin: 10px;
@@ -43,9 +43,6 @@
 .clear {
     grid-column: 4 / 5;
     grid-row: 1 / 2;
-    border: 2px solid pink;
-    padding: 10px;
-    margin: 10px;
 }
 
 .add {
