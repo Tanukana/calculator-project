@@ -16,30 +16,6 @@ let evalArr = [];
 let numArr = [];
 let opArr = [];
 
-const add = (a, b) => output.textContent = a + b;
-
-const subtract = (a, b) => output.textContent = a - b;
-
-const multiply = (a, b) => output.textContent = a * b;
-
-const  divide = (a, b) => output.textContent = a / b;
-
-// const operator = (a, b) => {
-//     op = prompt('add | subtract | multi | divide :  ')
-//     opLow = op.toLowerCase();
-//     if(opLow == 'add') {
-//         return add(a, b);
-//     } else if(opLow == 'subtract') {
-//         return subtract(a, b);
-//     } else if(opLow == 'multi') {
-//         return multiply(a, b);
-//     } else if(opLow == 'divide') {
-//         return divide(a, b);
-//     } else {
-//         return alert(`Make sure you spell your input correctly!`)
-//     }
-// };
-
 // Event listener for buttons to return a value upon click while sending it to a function which displays it
 buttons.forEach(function(div) {
     div.addEventListener('click', function() {
