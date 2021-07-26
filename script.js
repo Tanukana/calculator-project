@@ -1,24 +1,22 @@
 const mainDiv = document.querySelector('#calc-container');
 const operators = document.querySelectorAll('.op');
-const buttons = document.querySelectorAll('.calcBtn');
+const numberBtns = document.querySelectorAll('.calcBtn');
 const display = document.querySelector('.display-value');
+const historyDisplay = document.querySelector('.history');
 const clear = document.querySelector('.clear');
 const equalSign = document.querySelector('.equals');
 let x = 0;
 let y = 0;
 let z = 0;
 let result = 0;
-let arrSplitter = 0;
-let numIndex = 0;
-let opIndex = 0;
 let firstEvalCheck = 0;
-let evalArr = [];
+let opClicked = 0;
 let numArr = [];
 let opArr = [];
 
 // Event listener for buttons to return a value upon click while sending it to a function which displays it
-buttons.forEach(function(div) {
-    div.addEventListener('click', function() {
+numberBtns.forEach(function(num) {
+    num.addEventListener('click', function() {
         displayValue(this.textContent);
     })
 });
@@ -30,62 +28,47 @@ clear.addEventListener('click', () => {
 
 // Displaying input from buttons
 let displayValue = (value) => {
-    if(display.textContent == "0") {
+    if(display.textContent == '0') {
         display.textContent = value;
-    } else {
+        opClicked = 0;
+    } else if(opClicked == '0') {
         display.textContent += value;
     }
 };
 
-// Event Listener to store display values in their own arrays
+// Creating operator function which records existing detail at that time and prepares for next inputs
 operators.forEach(function(op) {
     op.addEventListener('click', function() {
-        evalArr[0] = display.textContent;
-        displayValue(this.textContent);
-        return console.log(evalArr);
+        if(opClicked == '0') {
+        opArr.push(op.textContent);
+        numArr.push(display.textContent);
+        historyDisplay.textContent += display.textContent + opArr[0];
+        display.textContent = '0';
+        opClicked = 1;
+        console.log(opArr, numArr, opClicked);
+        } else {
+            return;
+        }
     })
 });
 
 // Equals function or Evalution phase
-equalSign.addEventListener('click', function() {
-    evalArr[0] = display.textContent;
-    str = evalArr.toString();
-    newArr = str.split(' ');
-        for(i = 0; i <= newArr.length - 1; i++) {
-            if(arrSplitter == '0') {
-                numArr[numIndex] = newArr[i];
-                ++numIndex;
-                ++arrSplitter;
-            } else if(arrSplitter == '1') {
-                opArr[opIndex] = newArr[i];
-                ++opIndex;
-                --arrSplitter;
-            }
-        }
-
-    console.log(newArr);
-    console.log(numArr);
-    console.log(opArr);
-    operate();
-
-});
-
 // Complete calculator calculating function
-
-let operate = () => {
+equalSign.addEventListener('click', () => {
+    numArr.push(display.textContent);
     while(numArr.length >= 1) {
         if(firstEvalCheck == '0') {
             x = numArr.shift();
             y = numArr.shift();
-            if(opArr[0] == '+') {
+            if(opArr[0] == ' + ') {
                 console.log(+x + +y);
                 result = (+x + +y);
 
-            } else if(opArr[0] == '-') {
+            } else if(opArr[0] == ' - ') {
                 console.log(+x - +y);  
                 result = (+x - +y);
 
-            } else if(opArr[0] == '*') {
+            } else if(opArr[0] == ' * ') {
                 console.log(+x * +y);    
                 result = (+x * +y);
 
@@ -100,15 +83,15 @@ let operate = () => {
 
         } else {
             z = numArr.shift();
-            if(opArr[0] == '+') {
+            if(opArr[0] == ' + ') {
                 console.log(result + +z);
                 result += +z;
                 opArr.shift();
-            } else if(opArr[0] == '-') {
+            } else if(opArr[0] == ' - ') {
                 console.log(result - +z);  
                 result -= +z;
                 opArr.shift();
-            } else if(opArr[0] == '*') {
+            } else if(opArr[0] == ' * ') {
                 console.log(result * +z);  
                 result *= +z;  
                 opArr.shift();
@@ -119,4 +102,5 @@ let operate = () => {
             }
         }
     }
-}
+
+});

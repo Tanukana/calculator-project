@@ -21,15 +21,28 @@
     margin: 10px;
 }
 
+.history {
+    display: flex;
+    position: absolute;
+    top: 15.5%;
+    width: 20rem;
+    height: 1rem;
+    justify-content: end;
+    font-size: 0.9em;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
 .display-value {
     display: flex;
     position: relative;
-    top: 70%;
+    top: 40%;
+    height: 4rem;
     justify-content: end;
-    align-items: center;
+    align-items: end;
     padding: 5px;
-    font-size: 24px;
-    border: 1px solid peachpuff;
+    font-size: 1.5em;
+    border: 2px solid peachpuff;
 }
 
 .display {
