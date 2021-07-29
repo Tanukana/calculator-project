@@ -5,6 +5,7 @@ const display = document.querySelector('.display-value');
 const historyDisplay = document.querySelector('.history');
 const clear = document.querySelector('.clear');
 const equalSign = document.querySelector('.equals');
+const resultContainer = document.querySelector('.results');
 let firstNum = 0;
 let secondNum = 0;
 let resultPair = 0;
@@ -26,6 +27,7 @@ numberBtns.forEach(function(num) {
 clear.addEventListener('click', () => {
         display.textContent = '0';
         historyDisplay.textContent = '';
+        resultContainer.textContent = '';
         firstNum = 0;
         secondNum = 0;
         resultPair = 0;
@@ -126,5 +128,6 @@ equalSign.addEventListener('click', () => {
                 }
             }
         }
+        resultContainer.textContent = `${result}`;
     }
 });

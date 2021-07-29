@@ -15,6 +15,12 @@
     grid-column: 2 / 3;
 }
 
+.results {
+    display: grid;
+    grid-column: 1;
+    font-size: 3em;
+}
+
 .calcBtn, .op, .clear, .equals {
     border: 2px solid pink;
     padding: 10px;
@@ -27,7 +33,7 @@
     top: 15.5%;
     width: 20rem;
     height: 1rem;
-    justify-content: end;
+    justify-content: flex-end;
     font-size: 0.9em;
     overflow: hidden;
     white-space: nowrap;
@@ -77,8 +83,3 @@
     grid-column: 4 / 5;
     grid-row: 5 / 6;
 }
-
-/* .equals {
-    grid-column: 4 / 5;
-    grid-row: 6 / 7;
-} */
