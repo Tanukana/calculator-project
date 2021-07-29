@@ -5,12 +5,13 @@ const display = document.querySelector('.display-value');
 const historyDisplay = document.querySelector('.history');
 const clear = document.querySelector('.clear');
 const equalSign = document.querySelector('.equals');
-let x = 0;
-let y = 0;
-let z = 0;
+let firstNum = 0;
+let secondNum = 0;
+let resultPair = 0;
 let result = 0;
 let firstEvalCheck = 0;
 let opClicked = 0;
+let firstNumOp = 0;
 let numArr = [];
 let opArr = [];
 
@@ -24,6 +25,16 @@ numberBtns.forEach(function(num) {
 // Clear Button functionality
 clear.addEventListener('click', () => {
         display.textContent = '0';
+        historyDisplay.textContent = '';
+        firstNum = 0;
+        secondNum = 0;
+        resultPair = 0;
+        result = 0;
+        firstEvalCheck = 0;
+        opClicked = 0;
+        firstNumOp = 0;
+        numArr = [];
+        opArr = [];
 });
 
 // Displaying input from buttons
@@ -39,15 +50,22 @@ let displayValue = (value) => {
 // Creating operator function which records existing detail at that time and prepares for next inputs
 operators.forEach(function(op) {
     op.addEventListener('click', function() {
-        if(opClicked == '0') {
-        opArr.push(op.textContent);
-        numArr.push(display.textContent);
-        historyDisplay.textContent += display.textContent + opArr[0];
-        display.textContent = '0';
-        opClicked = 1;
-        console.log(opArr, numArr, opClicked);
-        } else {
-            return;
+        if(opClicked == '0' && firstNumOp == '0') {
+            opArr.push(op.textContent);
+            numArr.push(display.textContent);
+            historyDisplay.textContent += display.textContent + op.textContent;
+            display.textContent = '0';
+            firstNumOp = 1;
+            opClicked = 1;
+            console.log(opArr, numArr);
+        } else if(opClicked =='0' && firstNumOp == '1') {
+            opArr.push(op.textContent);
+            numArr.push(display.textContent);
+            historyDisplay.textContent += display.textContent + op.textContent;
+            display.textContent = '0';
+            equalSign.click();
+            opClicked = 1;
+            console.log(opArr, numArr);
         }
     })
 });
@@ -55,52 +73,58 @@ operators.forEach(function(op) {
 // Equals function or Evalution phase
 // Complete calculator calculating function
 equalSign.addEventListener('click', () => {
-    numArr.push(display.textContent);
-    while(numArr.length >= 1) {
-        if(firstEvalCheck == '0') {
-            x = numArr.shift();
-            y = numArr.shift();
-            if(opArr[0] == ' + ') {
-                console.log(+x + +y);
-                result = (+x + +y);
-
-            } else if(opArr[0] == ' - ') {
-                console.log(+x - +y);  
-                result = (+x - +y);
-
-            } else if(opArr[0] == ' * ') {
-                console.log(+x * +y);    
-                result = (+x * +y);
-
+    if(numArr[0] == undefined) {
+        numArr.push(display.textContent);
+        equalSign.click();
+    } else if(numArr[0] == '0' || numArr[1] == undefined && display.textContent == '0' && result == '0') {
+        alert('I don\'t think so!!');
+        clear.click();
+    } else {
+        while(numArr.length >= 1) {
+            if(firstEvalCheck == '0') {
+                firstNum = numArr.shift();
+                secondNum = numArr.shift();
+                if(opArr[0] == ' + ') {
+                    console.log(+firstNum + +secondNum);
+                    result = (+firstNum + +secondNum);
+    
+                } else if(opArr[0] == ' - ') {
+                    console.log(+firstNum - +secondNum);  
+                    result = (+firstNum - +secondNum);
+    
+                } else if(opArr[0] == ' * ') {
+                    console.log(+firstNum * +secondNum);    
+                    result = (+firstNum * +secondNum);
+    
+                } else {
+                    console.log(+firstNum / +secondNum);     
+                    result = (+firstNum / +secondNum);
+                }
+                ++firstEvalCheck;
+                opArr.shift();
+    
             } else {
-                console.log(+x / +y);     
-                result = (+x / +y);
-
-            }
-
-            ++firstEvalCheck;
-            opArr.shift();
-
-        } else {
-            z = numArr.shift();
-            if(opArr[0] == ' + ') {
-                console.log(result + +z);
-                result += +z;
-                opArr.shift();
-            } else if(opArr[0] == ' - ') {
-                console.log(result - +z);  
-                result -= +z;
-                opArr.shift();
-            } else if(opArr[0] == ' * ') {
-                console.log(result * +z);  
-                result *= +z;  
-                opArr.shift();
-            } else {
-                console.log(result / +z);   
-                result /= +z;  
-                opArr.shift();
+                resultPair = numArr.shift();
+                if(opArr[0] == ' + ') {
+                    console.log(result + +resultPair);
+                    result += +resultPair;
+                    opArr.shift();
+                } else if(opArr[0] == ' - ') {
+                    console.log(result - +resultPair);  
+                    result -= +resultPair;
+                    opArr.shift();
+                } else if(opArr[0] == ' * ') {
+                    console.log(result * +resultPair);  
+                    result *= +resultPair;  
+                    opArr.shift();
+                } else if(opArr[0] == ' / ') {
+                    console.log(result / +resultPair);   
+                    result /= +resultPair;  
+                    opArr.shift();
+                } else if(numArr[0] == 'undefined') {
+                    return;
+                }
             }
         }
     }
-
 });
