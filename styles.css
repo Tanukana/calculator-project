@@ -83,3 +83,13 @@
     grid-column: 4 / 5;
     grid-row: 5 / 6;
 }
+
+.num0 {
+    grid-column: 2 / 3;
+    grid-row: 6 / 7;
+}
+
+.num9 {
+    grid-column: 3 / 4;
+    grid-row: 5 / 6;
+}
