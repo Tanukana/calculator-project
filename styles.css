@@ -23,7 +23,7 @@
 
 .history {
     display: flex;
-    position: absolute;
+    position: static;
     top: 15.5%;
     width: 20rem;
     height: 1rem;
@@ -36,7 +36,7 @@
 .display-value {
     display: flex;
     position: relative;
-    top: 40%;
+    top: 25%;
     height: 4rem;
     justify-content: end;
     align-items: end;
